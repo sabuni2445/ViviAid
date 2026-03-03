@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViviAid | Empowering Vision through AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-theme">
+    <div class="ambient-background"></div>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                VIVIAID
+            </div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#features">Features</a>
+                <a href="#hardware">Ecosystem</a>
+                <a href="#demo">Live Demo</a>
+            </div>
+            <button class="btn-primary btn-nav">Pre-Order</button>
+        </div>
+    </nav>
+
+    <header id="overview" class="hero-section">
+        <div class="hero-content">
+            <div class="system-status-badge">
+                <div class="pulse-dot"></div>
+                <span>Obsidian Camera <i class="fas fa-sync-alt spin-icon"></i> Vivi-Sync Earpods</span>
+            </div>
+            <h1 class="hero-title">Experience the world <br><span class="text-gradient">reimagined.</span></h1>
+            <p class="hero-subtitle">ViviAid is a revolutionary AI wearable platform that seamlessly connects visual
+                perception from your glasses directly to intuitive audio guidance in your earpods.</p>
+
+            <div class="hero-actions">
+                <a href="#demo" class="btn-primary">Explore Live Demo</a>
+                <a href="#hardware" class="btn-secondary">View Ecosystem</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-orb"></div>
+            <img src="assets/glasses_1.png" alt="ViviAid Glasses" class="hero-image floating">
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Interactive Intelligence</h2>
+            <p class="section-desc">Experience real-time AI perception. Click any capability to explore dynamic command
+                interactions.</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Navigation -->
+            <div class="feature-card glass-panel" data-feature="navigation">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>Smart Navigation</h3>
+                </div>
+                <p class="feature-desc">Voice-guided precision using spatial mapping.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('navigation', 'park')">
+                            <i class="fas fa-microphone"></i> "Take me to Central Park"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('navigation', 'home')">
+                            <i class="fas fa-microphone"></i> "Navigate home"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perception -->
+            <div class="feature-card glass-panel" data-feature="perception">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Scene Perception</h3>
+                </div>
+                <p class="feature-desc">Real-time visual data relayed to your earpods.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('perception', 'surroundings')">
+                            <i class="fas fa-microphone"></i> "Describe my surroundings"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('perception', 'read_sign')">
+                            <i class="fas fa-microphone"></i> "What does that sign say?"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music -->
+            <div class="feature-card glass-panel" data-feature="music">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-music"></i></div>
+                    <h3>Entertainment Hub</h3>
+                </div>
+                <p class="feature-desc">Seamless streaming and audio control.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('music', 'lofi')">
+                            <i class="fas fa-microphone"></i> "Play relaxing lo-fi"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('music', 'workout')">
+                            <i class="fas fa-microphone"></i> "Start workout playlist"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rideshare -->
+            <div class="feature-card glass-panel" data-feature="rideshare">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-car"></i></div>
+                    <h3>Smart Mobility</h3>
+                </div>
+                <p class="feature-desc">Voice-activated rideshare integration.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('rideshare', 'uber')">
+                            <i class="fas fa-microphone"></i> "Call me an Uber"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('rideshare', 'status')">
+                            <i class="fas fa-microphone"></i> "How far is my ride?"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recognition & Emotion -->
+            <div class="feature-card glass-panel" data-feature="recognition">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Emotion & Face Recognition</h3>
+                </div>
+                <p class="feature-desc">Social identity awareness and real-time mood detection.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('recognition', 'who')">
+                            <i class="fas fa-microphone"></i> "Who is walking towards me?"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('recognition', 'crowd')">
+                            <i class="fas fa-microphone"></i> "Is anyone I know here?"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('recognition', 'mood')">
+                            <i class="fas fa-microphone"></i> "How is Jimmy feeling?"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading -->
+            <div class="feature-card glass-panel" data-feature="reading">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Contextual OCR</h3>
+                </div>
+                <p class="feature-desc">Instant text extraction from visual field.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('reading', 'menu')">
+                            <i class="fas fa-microphone"></i> "Read this menu"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('reading', 'book')">
+                            <i class="fas fa-microphone"></i> "Read first page"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Currency Guard -->
+            <div class="feature-card glass-panel" data-feature="currency">
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Currency Guard</h3>
+                </div>
+                <p class="feature-desc">Fraud detection and bill recognition.</p>
+                <div class="feature-body">
+                    <div class="divider"></div>
+                    <p class="options-label">Command Buddy:</p>
+                    <div class="options-grid">
+                        <button class="btn-command" onclick="simulateVoice('currency', 'check')">
+                            <i class="fas fa-microphone"></i> "Buddy, check this note"
+                        </button>
+                        <button class="btn-command" onclick="simulateVoice('currency', 'fraud')">
+                            <i class="fas fa-microphone"></i> "Is this money real?"
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware" class="hardware-section">
+        <div class="hardware-container glass-panel">
+            <div class="hardware-info">
+                <h2 class="section-title">The Vivi-Sync Ecosystem</h2>
+                <p class="hardware-desc">A perfect harmony of sight and sound. The Obsidian Glasses actively observe the
+                    world, while the Vivi-Sync Earpods dynamically relay intelligence directly to you via
+                    bone-conduction.</p>
+
+                <div class="specs-list">
+                    <div class="spec-item">
+                        <div class="spec-icon"><i class="fas fa-glasses"></i></div>
+                        <div class="spec-text">
+                            <h4>Obsidian Frames</h4>
+                            <p>Aerospace aluminum with 4K AI capture sensors.</p>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon"><i class="fas fa-headphones-alt"></i></div>
+                        <div class="spec-text">
+                            <h4>Vivi-Sync Earpods</h4>
+                            <p>Bone-conduction audio preserving environmental awareness.</p>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon"><i class="fas fa-network-wired"></i></div>
+                        <div class="spec-text">
+                            <h4>Neural Link</h4>
+                            <p>Zero-latency wireless tethering between camera and audio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hardware-showcase">
+                <div class="showcase-glow"></div>
+                <img src="assets/glasses_2.png" alt="Obsidian Glasses" class="hw-img-main floating-slow">
+                <img src="assets/earpods.png" alt="Vivi-Sync Earpods" class="hw-img-sub floating-fast">
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <div class="section-header">
+            <h2 class="section-title">Live Perception Engine</h2>
+            <p class="section-desc">Experience the intelligent synchronization of camera capture and AI auditory
+                response.</p>
+        </div>
+
+        <div class="demo-interface glass-panel">
+            <div class="demo-visual-feed">
+                <div class="feed-overlay">
+                    <div class="feed-status">
+                        <div class="pulse-dot green"></div> Active Feed: Camera &harr; Earpods
+                    </div>
+                    <div class="ai-scanning-line"></div>
+                </div>
+                <img src="assets/ai_view.png" alt="AI perception view" class="feed-image">
+            </div>
+            <div class="demo-interaction">
+                <div class="interaction-header">
+                    <i class="fas fa-waveform"></i> Audio Processing Core
+                </div>
+                <div class="chat-flow">
+                    <div class="message user-message" id="user-speech-bubble">
+                        <div class="message-meta"><i class="fas fa-microphone"></i> User Voice</div>
+                        <p class="message-text">Waiting for a command from the Features section...</p>
+                    </div>
+                    <div class="message ai-message" id="ai-speech-bubble">
+                        <div class="message-meta"><i class="fas fa-robot"></i> Buddy AI (Vivi-Sync Earpods)</div>
+                        <p class="message-text">Hello! I'm Buddy, your friendly assistant. Select a feature command to
+                            test me out!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proactive-guide" class="demo-section proactive-section">
+        <div class="section-header">
+            <h2 class="section-title">Proactive Guidance</h2>
+            <p class="section-desc">Buddy actively monitors your surroundings to keep you safe. No commands
+                required&mdash;it tells you exactly what you need to know, exactly when you need it.</p>
+        </div>
+
+        <div class="proactive-container glass-panel">
+            <div class="proactive-video-wrapper">
+                <div class="video-overlay">
+                    <div class="video-hud">
+                        <div class="hud-top">
+                            <span class="hud-item"><i class="fas fa-video pulse-red"></i> OBSIDIAN CAM REC</span>
+                            <div class="live-map-container">
+                                <div class="map-label"><i class="fas fa-map-marker-alt"></i> Live GPS Tracking</div>
+                                <div class="map-iframe-wrapper">
+                                    <iframe
+                                        src="https://maps.google.com/maps?q=5th%20Avenue,%20NYC&t=m&z=16&output=embed&iwloc=near&disableDefaultUI=true"
+                                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                    <div class="map-glass-overlay"></div>
+                                </div>
+                            </div>
+                            <span class="hud-item"><i class="fas fa-signal"></i> LIVE</span>
+                        </div>
+                        <div class="hud-center">
+                            <i class="fas fa-crosshairs target-reticle"></i>
+                        </div>
+                        <div class="hud-bottom">
+                            <div class="ai-subtitle-box" id="proactive-subtitle">
+                                <span class="subtitle-text info">System scanning environment...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/street_navigation.png" alt="Street navigation view" class="proactive-video-img">
+            </div>
+            <div class="proactive-controls">
+                <button class="btn-primary btn-play" onclick="startProactiveDemo()" id="btn-proactive-play">
+                    <i class="fas fa-play"></i> Start Navigation Simulation
+                </button>
+                <div class="proactive-logs" id="proactive-logs">
+                    <div class="log-item header-log">Navigation initialized... waiting to start simulation.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding a professional footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-icon"></span>
+                VIVIAID
+            </div>
+            <p class="footer-text">Empowering independence through intuitive, empathetic AI.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ViviAid Technologies. Confidential Pitch Deck Prototype.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

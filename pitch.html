@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ViviAid | Investor Pitch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --cyan: #00e5ff;
+            --purple: #8b5cf6;
+            --bg-dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Slide Layout */
+        .slide-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Trigger animation when slide is present */
+        .present .slide-container {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.5s;
+        }
+
+        .image-side {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .content-side {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .img-featured {
+            width: 100%;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.1);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            padding: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--cyan);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--cyan);
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #bbb;
+        }
+
+        .ethiopia-tag {
+            background: #007633;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .big-stat {
+            font-size: 3.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .reveal .controls {
+            color: var(--cyan);
+        }
+
+        .reveal .progress {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .reveal .progress span {
+            background: var(--cyan);
+        }
+
+        @keyframes pulse-icon {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .pulse {
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+
+        /* Full-width Title Slide */
+        .title-slide {
+            flex-direction: column;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Welcome -->
+            <section>
+                <div class="slide-container title-slide">
+                    <div class="icon-box pulse" style="font-size: 4rem;"><i class="fa-solid fa-eye"></i></div>
+                    <h1 class="text-gradient" style="font-size: 5rem; margin: 0;">ViviAid</h1>
+                    <h3 style="letter-spacing: 0.4em; font-weight: 300; font-size: 1.5rem;">The Future of Perception
+                    </h3>
+                    <div
+                        style="margin-top: 50px; padding: 20px; background: var(--glass); border-radius: 100px; display: inline-flex; align-items: center; gap: 15px;">
+                        <img src="assets/glasses_1.png" style="width: 100px; border-radius: 10px; margin: 0;">
+                        <p style="color: #888; font-size: 0.9rem; text-transform: uppercase; margin: 0;">A Seamless
+                            Wearable AI Ecosystem</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 1B: The Mission Narrative -->
+            <section>
+                <div class="slide-container"
+                    style="flex-direction: column; text-align: left; align-items: flex-start; max-width: 1100px; margin: 0 auto;">
+                    <h2 class="text-gradient" style="margin-bottom: 40px;">The Mission</h2>
+
+                    <div
+                        style="background: var(--glass); border-left: 5px solid var(--cyan); padding: 40px; border-radius: 0 24px 24px 0; margin-bottom: 30px;">
+                        <p style="font-size: 1.4rem; line-height: 1.6; margin: 0;">
+                            <strong>ViviAid</strong> is an AI-powered wearable ecosystem that restores independence to
+                            visually impaired individuals in Ethiopia and globally through proactive, localized
+                            environmental guidance.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                        <div
+                            style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 30px; border-radius: 20px;">
+                            <h4
+                                style="color: var(--cyan); font-family: 'Outfit'; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em;">
+                                The Experience</h4>
+                            <p style="font-size: 1rem; color: #ccc; line-height: 1.5;">
+                                Users wear sleek Obsidian Frames and bone-conduction Sync Earpods. The integrated Buddy
+                                AI processes 4K visual feeds, providing proactive voice alerts for hazards and traffic
+                                in native Amharic.
+                            </p>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 30px; border-radius: 20px;">
+                            <h4
+                                style="color: var(--purple); font-family: 'Outfit'; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em;">
+                                The Transformation</h4>
+                            <p style="font-size: 1rem; color: #ccc; line-height: 1.5;">
+                                By bypassing missing physical infrastructure, ViviAid transforms vision impairment from
+                                a life of dependency into a future of absolute independence and world-class mobility.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: The Hard Reality (Analytical) -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px;">
+                            <h4 style="color: var(--cyan); margin-bottom: 25px; font-size: 1.1rem;">THE INFRASTRUCTURE
+                                GAP</h4>
+
+                            <!-- Accident Stat -->
+                            <div style="margin-bottom: 30px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 0.9rem; color: #aaa;">Accident/Fall Risk</span>
+                                    <span style="font-weight: 700; color: #ff5252;">1.7x HIGHER</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 85%; height: 100%; background: #ff5252;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Education Stat -->
+                            <div style="margin-bottom: 30px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 0.9rem; color: #aaa;">Ethiopian Education Access</span>
+                                    <span style="font-weight: 700; color: var(--purple);">
+                                        < 1%</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 1%; height: 100%; background: var(--purple);"></div>
+                                </div>
+                                <p style="font-size: 0.7rem; color: #555; margin-top: 5px;">Source: Education Sector
+                                    Development Program (ESDP)</p>
+                            </div>
+
+                            <!-- Global Stat -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-size: 0.9rem; color: #aaa;">Dangerous Crossing Attempts</span>
+                                    <span style="font-weight: 700; color: var(--cyan);">6.5%</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 35%; height: 100%; background: var(--cyan);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Systemic Failure</h2>
+                        <div class="grid-container">
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="feature-title">Why Current Tools Fail</div>
+                                <div class="feature-desc">Existing solutions from <strong>OrCam</strong>,
+                                    <strong>Envision</strong>, and <strong>Seeing AI (Microsoft)</strong> are
+                                    command-based. In a dynamic street environment, waiting for a command is already too
+                                    late.
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                                <div class="feature-title">The Cost Barrier</div>
+                                <div class="feature-desc">Market leaders cost <strong>$2,500 - $3,500</strong>. This is
+                                    inaccessible for 99% of our target market.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                                <div class="feature-title">Local as the Solution</div>
+                                <div class="feature-desc">By manufacturing locally, we reduce costs by
+                                    <strong>70%</strong>, providing world-class tech for those who need it most.
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div class="feature-title">Education Trap</div>
+                                <div class="feature-desc">99% of visually impaired children in Ethiopia are barred from
+                                    the economy due to lack of affordable tools.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-hospital-user"></i></div>
+                                <div class="feature-title">Medical Impact</div>
+                                <div class="feature-desc">Accidents are nearly 2x more common due to guidance and
+                                    response latency.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2B: The Human Challenge -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <img src="assets/sad_child.png" class="img-featured" alt="The Human Challenge">
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Human Challenge</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-road-barrier"></i></div>
+                                <div class="feature-title">Infrastructure Gap</div>
+                                <div class="feature-desc">Unpredictable environments in Ethiopia lack consistent safety
+                                    paths.</div>
+                                <div class="ethiopia-tag">Critical Priority</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                                <div class="feature-title">Dependency</div>
+                                <div class="feature-desc">Existing tools occupy hands or require constant assist.</div>
+                            </div>
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-users-slash"></i></div>
+                                <div class="feature-title">Social Vacuum</div>
+                                <div class="feature-desc">Disconnected from non-verbal social cues and environment
+                                    "vibe".</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2C: Strategic Advantage -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 24px; text-align: center;">
+                            <h4 style="color: var(--cyan); margin-bottom: 20px;">PRICE DISRUPTION</h4>
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div
+                                    style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,50,50,0.2);">
+                                    <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">Incumbents
+                                        (OrCam/Envision)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #ff5252;">$2,500 - $3,500
+                                    </div>
+                                </div>
+                                <div style="font-size: 1.5rem; color: #444;">VS</div>
+                                <div
+                                    style="background: rgba(0, 229, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid var(--cyan);">
+                                    <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">ViviAid
+                                        (Local Assembly)</div>
+                                    <div style="font-size: 2.2rem; font-weight: 800; color: var(--cyan);">$600 - $800
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: var(--cyan); margin-top: 5px;">Accessible to
+                                        the bottom 90%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Strategic Advantage</h2>
+                        <div class="grid-container">
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-industry"></i></div>
+                                <div class="feature-title">Local Fabrication & ROI</div>
+                                <div class="feature-desc">By assembling in-region, we eliminate import tariffs and
+                                    reduce specialized labor costs, enabling a <strong>70% price reduction</strong>
+                                    while maintaining world-class performance.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                                <div class="feature-title">Currency Fraud Check</div>
+                                <div class="feature-desc">The only AI earpiece detecting fraudulent notes in
+                                    real-time—protecting users from financial exploitation.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+                                <div class="feature-title">Market Inclusivity</div>
+                                <div class="feature-desc">Our model provides tools to the millions who currently cannot
+                                    afford a $3k clinical device.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: The Ecosystem -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <img src="assets/glasses_1.png" class="img-featured" alt="The Solution">
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Vivi-Sync System</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-glasses"></i></div>
+                                <div class="feature-title">Obsidian Frames</div>
+                                <div class="feature-desc">Aerospace aluminum with integrated 4K neural capture.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-headphones"></i></div>
+                                <div class="feature-title">Sync Earpods</div>
+                                <div class="feature-desc">Bone-conduction audio path keeps user alert to ambient noise.
+                                </div>
+                            </div>
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-brain"></i></div>
+                                <div class="feature-title">Buddy AI Engine</div>
+                                <div class="feature-desc">Zero-latency processing translating sight into proactive
+                                    conversation.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3B: MVP & Technical Progress -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px; text-align: center;">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800"
+                                class="img-featured" style="aspect-ratio: 1/1; max-height: 300px; margin-bottom: 20px;"
+                                alt="MVP Development">
+                            <div class="feature-title" style="margin-bottom: 5px;">CURRENT STATUS</div>
+                            <div class="ethiopia-tag" style="background: var(--purple);">PROTOTYPE V2.4</div>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Traction & MVP</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                                <div class="feature-title">Functional Core</div>
+                                <div class="feature-desc">Working 3D-printed prototype with NVIDIA Jetson edge
+                                    processing.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-person-walking"></i></div>
+                                <div class="feature-title">Field Validated</div>
+                                <div class="feature-desc">Operational navigations in Piazza and Bole, Addis Ababa.
+                                </div>
+                            </div>
+                            <div class="feature-item"
+                                style="grid-column: span 2; flex-direction: row; gap: 20px; align-items: center;">
+                                <div class="icon-box" style="margin:0;"><i class="fa-solid fa-check-double"></i></div>
+                                <div>
+                                    <div class="feature-title">Validated Amharic NLP</div>
+                                    <div class="feature-desc">Linguistic models fully operational for real-time hazard
+                                        translation.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Proactive Intelligence -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <img src="assets/street_navigation.png" class="img-featured" alt="Proactive Guidance">
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Proactive Guide</h2>
+                        <div class="grid-container"
+                            style="grid-template-columns: repeat(2, 1fr); grid-template-rows: auto;">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="feature-title">Hazards</div>
+                                <div class="feature-desc">Auto recognition of potholes and obstacles.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-language"></i></div>
+                                <div class="feature-title">Amharic Native</div>
+                                <div class="feature-desc">Full conversational support in Amharic.</div>
+                                <div class="ethiopia-tag">Localized</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-face-smile"></i></div>
+                                <div class="feature-title">Emotion Sync</div>
+                                <div class="feature-desc">Social awareness detecting expressions/mood.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-money-bill-check"></i></div>
+                                <div class="feature-title">Currency Guard</div>
+                                <div class="feature-desc">Instantly validates currency and detects counterfeit notes.
+                                </div>
+                            </div>
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <div class="feature-title">Digital Path</div>
+                                <div class="feature-desc">GPS-sync navigation replacing physical tactile paths.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Market Opportunity -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px; text-align: center;">
+                            <span class="big-stat text-gradient">250M+</span>
+                            <p style="color: #888;">Global Vision Impairment</p>
+                            <hr style="opacity: 0.1; margin: 30px 0;">
+                            <span class="big-stat text-gradient">1.2M</span>
+                            <p style="color: #888;">Ethiopian Primary Target</p>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Market Scale</h2>
+                        <div class="feature-item" style="width: 100%;">
+                            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="feature-title">$15B TAM by 2030</div>
+                            <div class="feature-desc">Assistive technology is entering a hyper-growth phase driven by
+                                edge-AI wearables.</div>
+                            <div class="ethiopia-tag">Strategic Hub: Ethiopia</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5B: Technical Stack -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <img src="assets/ai_view.png" class="img-featured" style="filter: hue-rotate(45deg);">
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Proprietary Tech Stack</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-brain"></i></div>
+                                <div class="feature-title">Edge AI Brain</div>
+                                <div class="feature-desc">PyTorch + NVIDIA Jetson for on-device zero-latency perception.
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
+                                <div class="feature-title">NLP Engine</div>
+                                <div class="feature-desc">Custom Amharic models fine-tuned via Hugging Face.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                                <div class="feature-title">Precision Optics</div>
+                                <div class="feature-desc">4K Visual capture integrated with Qualcomm Spaces.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-cloud-bolt"></i></div>
+                                <div class="feature-title">Cloud Infrastructure</div>
+                                <div class="feature-desc">AWS-synced field monitoring and OTA AI updates.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5BB: The Local Engine -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px;">
+                            <h4
+                                style="color: var(--cyan); margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase;">
+                                Strategic Local Hub</h4>
+                            <div style="display: flex; flex-direction: column; gap: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div class="icon-box" style="margin: 0; min-width: 50px;"><i
+                                            class="fa-solid fa-map-pin"></i></div>
+                                    <div style="text-align: left;">
+                                        <div style="font-weight: 700;">Addis Ababa Hub</div>
+                                        <div style="font-size: 0.8rem; color: #888;">Centralized R&D and Assembly</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div class="icon-box" style="margin: 0; min-width: 50px;"><i
+                                            class="fa-solid fa-screwdriver-wrench"></i></div>
+                                    <div style="text-align: left;">
+                                        <div style="font-weight: 700;">Local Assembly</div>
+                                        <div style="font-size: 0.8rem; color: #888;">Reducing unit cost by 70%</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div class="icon-box" style="margin: 0; min-width: 50px;"><i
+                                            class="fa-solid fa-users"></i></div>
+                                    <div style="text-align: left;">
+                                        <div style="font-weight: 700;">Inclusive Economy</div>
+                                        <div style="font-size: 0.8rem; color: #888;">Job creation for local tech talent
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Addis-Built Tech</h2>
+                        <div class="grid-container">
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-handshake-angle"></i></div>
+                                <div class="feature-title">Affordability as a Mission</div>
+                                <div class="feature-desc">By skipping corporate markups and import barriers, we bring
+                                    world-class AI to the bottom-of-the-pyramid market first, ensuring <strong>nobody is
+                                        left behind.</strong></div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                                <div class="feature-title">Proprietary PCB Design</div>
+                                <div class="feature-desc">Custom-layered circuits optimized for regional supply chains.
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-shield-check"></i></div>
+                                <div class="feature-title">Native Resilience</div>
+                                <div class="feature-desc">Hardware built specifically for Ethiopian terrain and
+                                    connectivity.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5C: Allocation of Capital -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <div
+                            style="background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px;">
+                            <h3 style="font-size: 1.2rem; margin-bottom: 30px; letter-spacing: 0.2em;">Budget Allocation
+                            </h3>
+
+                            <div style="margin-bottom: 25px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
+                                    <span style="color: var(--cyan);">HARDWARE / MANUFACTURING</span>
+                                    <span style="font-weight: 700;">$1M (40%)</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
+                                    <div
+                                        style="width: 40%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 25px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
+                                    <span style="color: var(--cyan);">AI RESEARCH & AMHARIC NLP</span>
+                                    <span style="font-weight: 700;">$1M (40%)</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
+                                    <div
+                                        style="width: 40%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 25px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
+                                    <span style="color: var(--cyan);">PILOT OPERATIONS & LOGISTICS</span>
+                                    <span style="font-weight: 700;">$500K (20%)</span>
+                                </div>
+                                <div
+                                    style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
+                                    <div
+                                        style="width: 20%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                style="margin-top: 40px; text-align: center; border: 1px dashed var(--border); padding: 20px; border-radius: 12px;">
+                                <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">Total Capital
+                                    Requirement</div>
+                                <div class="text-gradient" style="font-size: 2.5rem; font-weight: 700;">$2.5M USD</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">Strategic Allocation</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-industry"></i></div>
+                                <div class="feature-title">Phase 1 Tooling</div>
+                                <div class="feature-desc">Injection molding, PCB fabrication, and regulatory
+                                    certifications (FCC/CE).</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
+                                <div class="feature-title">R&D Burn</div>
+                                <div class="feature-desc">18 Months of runway for core AI team and localization experts.
+                                </div>
+                            </div>
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                                <div class="feature-title">Pilot Logistics</div>
+                                <div class="feature-desc">Setup of the Addis Ababa hub, community training, and field
+                                    support staff.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: The Ask -->
+            <section>
+                <div class="slide-container">
+                    <div class="image-side">
+                        <img src="assets/earpods.png" class="img-featured" style="filter: brightness(0.8);">
+                    </div>
+                    <div class="content-side">
+                        <h2 class="text-gradient">$2.5M Seed Round</h2>
+                        <div class="grid-container">
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                                <div class="feature-title">Engineering</div>
+                                <div class="feature-desc">40% Miniaturization & manufacturing setup.</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
+                                <div class="feature-title">AI R&D</div>
+                                <div class="feature-desc">40% Edge optimization & Amharic NLP.</div>
+                            </div>
+                            <div class="feature-item" style="grid-column: span 2;">
+                                <div class="icon-box"><i class="fa-solid fa-flag-checkered"></i></div>
+                                <div class="feature-title">Pilot Scale</div>
+                                <div class="feature-desc">20% Rolling out the Addis Ababa Impact Pilot.</div>
+                            </div>
+                        </div>
+                        <div
+                            style="margin-top: 40px; font-weight: 700; font-size: 1.2rem; letter-spacing: 0.1em; color: var(--cyan);">
+                            RESTORING INDEPENDENCE
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Closing Vision -->
+            <section>
+                <div class="slide-container" style="flex-direction: column; text-align: center;">
+                    <div style="max-width: 800px; margin-bottom: 30px;">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1200"
+                            class="img-featured" style="aspect-ratio: 16/9; max-height: 400px; object-position: center;"
+                            alt="Smiling Child">
+                    </div>
+                    <div style="max-width: 1100px;">
+                        <h2 class="text-gradient" style="font-size: 3.8rem; line-height: 1.2; margin-bottom: 25px;">
+                            Imagine walking into the unknown every single day.
+                        </h2>
+                        <p
+                            style="font-size: 2.2rem; color: #eee; font-weight: 300; line-height: 1.4; margin: 0 auto; max-width: 950px;">
+                            Now imagine doing it <span style="color: var(--cyan); font-weight: 700;">without
+                                fear.</span><br>
+                            That’s the future we’re building.
+                        </p>
+                        <div
+                            style="margin-top: 50px; font-family: 'Outfit'; font-weight: 700; letter-spacing: 0.4em; color: var(--cyan); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: inline-block; text-transform: uppercase;">
+                            ViviAid: Independence Reclaimed
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            center: true,
+            width: 1300,
+            height: 800,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+
+</html>
