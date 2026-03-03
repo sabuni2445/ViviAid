@@ -23,7 +23,7 @@
   <p><em>Current assistive methods often require physical reliance and limit true independence.</em></p>
 </div>
 
-**The Solution:** ViviAid is a continuous, hands-free wearable ecosystem designed as a perfect harmony of sight and sound. It features the **Obsidian Frames** (aerospace-grade aluminum smart glasses with an integrated 4K AI camera) and the **Vivi-Sync Earpods** (bone-conduction earphones). The ecosystem is powered by "Buddy," our proprietary zero-latency Neural Perception Engine, which translates the surrounding world into conversational, proactive audio guidance.
+**The Solution:** ViviAid is a continuous, hands-free wearable ecosystem designed as a perfect harmony of sight and sound. Engineered as 'Digital Infrastructure' for the visually impaired, our journey begins in **Ethiopia**, mastering the unique urban landscape of Addis Ababa through native Amharic. From this foundation, we will scale across **East Africa** and step-by-step to the **Global Stage**, bypassing systemic barriers to accessibility and reclaiming independence for millions worldwide.
 
 <div align="center">
   <img src="assets/street_navigation.png" alt="ViviAid Autonomous Glasses View" width="500" style="border-radius:10px; margin:20px 0;">

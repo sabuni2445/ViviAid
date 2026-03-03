@@ -5,8 +5,8 @@
 
 ### Slide 1: Title Slide
 **ViviAid**
-*Experience the world reimagined.*
-Empowering independence for the visually impaired through seamless, empathetic AI.
+*Establishing Digital Autonomy: From Ethiopia to the World.*
+Empowering independence for the visually impaired through zero-latency, proactive AI. Starting in Ethiopia, scaling to East Africa, and reclaiming autonomy for the world.
 
 ---
 
