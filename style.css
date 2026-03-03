@@ -92,10 +92,17 @@ h4,
 }
 
 .logo-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
+    font-size: 1.6rem;
     background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .nav-links {
