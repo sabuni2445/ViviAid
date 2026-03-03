@@ -193,12 +193,29 @@ h4,
 .hero-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10rem 2rem 5rem;
+    padding: 8rem 2rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    min-height: 100vh;
+    min-height: 90vh;
+}
+
+@media (max-width: 1100px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 7rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .system-status-badge {
@@ -259,14 +276,14 @@ h4,
 }
 
 .hero-title {
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
     font-weight: 800;
 }
 
 .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
     color: var(--text-secondary);
     margin-bottom: 2.5rem;
     max-width: 480px;
