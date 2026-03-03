@@ -186,6 +186,62 @@
         }
 
         /* Full-width Title Slide */
+        /* Tech Background Decals */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 50%, transparent 20%, var(--bg-dark) 100%),
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+        }
+
+        .backdrop-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            opacity: 0.12;
+            filter: blur(40px) brightness(0.5);
+            transform: scale(1.1);
+            z-index: -2;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: var(--cyan);
+            filter: drop-shadow(0 0 15px var(--cyan));
+            opacity: 0.1;
+            transition: all 0.5s ease;
+        }
+
+        .icon-1 {
+            top: 5%;
+            left: 8%;
+            font-size: 8rem;
+        }
+
+        .icon-2 {
+            bottom: 10%;
+            right: 5%;
+            font-size: 10rem;
+        }
+
+        .icon-3 {
+            top: 70%;
+            left: 85%;
+            font-size: 6rem;
+        }
+
         .title-slide {
             flex-direction: column;
             text-align: center;
@@ -196,6 +252,13 @@
 <body>
 
     <div class="reveal">
+        <!-- Persistent Tech Background -->
+        <div class="tech-bg">
+            <div class="backdrop-image"></div>
+            <i class="fa-solid fa-microchip floating-icon icon-1"></i>
+            <i class="fa-solid fa-code-branch floating-icon icon-2"></i>
+            <i class="fa-solid fa-robot floating-icon icon-3"></i>
+        </div>
         <div class="slides">
 
             <!-- Slide 1: Welcome -->
@@ -396,18 +459,18 @@
                                     style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,50,50,0.2);">
                                     <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">Incumbents
                                         (OrCam/Envision)</div>
-                                    <div style="font-size: 1.8rem; font-weight: 700; color: #ff5252;">$2,500 - $3,500
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #ff5252;">~400,000 ETB
                                     </div>
                                 </div>
                                 <div style="font-size: 1.5rem; color: #444;">VS</div>
                                 <div
                                     style="background: rgba(0, 229, 255, 0.05); padding: 20px; border-radius: 12px; border: 1px solid var(--cyan);">
                                     <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">ViviAid
-                                        (Local Assembly)</div>
-                                    <div style="font-size: 2.2rem; font-weight: 800; color: var(--cyan);">$600 - $800
+                                        (Local Hub)</div>
+                                    <div style="font-size: 2.2rem; font-weight: 800; color: var(--cyan);">~80,000 ETB
                                     </div>
-                                    <div style="font-size: 0.8rem; color: var(--cyan); margin-top: 5px;">Accessible to
-                                        the bottom 90%</div>
+                                    <div style="font-size: 0.8rem; color: var(--cyan); margin-top: 5px;">Massively
+                                        affordable for the local market</div>
                                 </div>
                             </div>
                         </div>
@@ -689,16 +752,17 @@
                             <h3 style="font-size: 1.2rem; margin-bottom: 30px; letter-spacing: 0.2em;">Budget Allocation
                             </h3>
 
+
                             <div style="margin-bottom: 25px;">
                                 <div
                                     style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
-                                    <span style="color: var(--cyan);">HARDWARE / MANUFACTURING</span>
-                                    <span style="font-weight: 700;">$1M (40%)</span>
+                                    <span style="color: var(--cyan);">HARDWARE PROTOTYPING</span>
+                                    <span style="font-weight: 700;">250K ETB (50%)</span>
                                 </div>
                                 <div
                                     style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
                                     <div
-                                        style="width: 40%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
+                                        style="width: 50%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
                                     </div>
                                 </div>
                             </div>
@@ -706,13 +770,13 @@
                             <div style="margin-bottom: 25px;">
                                 <div
                                     style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
-                                    <span style="color: var(--cyan);">AI RESEARCH & AMHARIC NLP</span>
-                                    <span style="font-weight: 700;">$1M (40%)</span>
+                                    <span style="color: var(--cyan);">AI DATASET (LOCALIZED)</span>
+                                    <span style="font-weight: 700;">150K ETB (30%)</span>
                                 </div>
                                 <div
                                     style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
                                     <div
-                                        style="width: 40%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
+                                        style="width: 30%; height: 100%; background: linear-gradient(to right, var(--cyan), var(--purple));">
                                     </div>
                                 </div>
                             </div>
@@ -720,8 +784,8 @@
                             <div style="margin-bottom: 25px;">
                                 <div
                                     style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem;">
-                                    <span style="color: var(--cyan);">PILOT OPERATIONS & LOGISTICS</span>
-                                    <span style="font-weight: 700;">$500K (20%)</span>
+                                    <span style="color: var(--cyan);">PILOT OPERATIONS</span>
+                                    <span style="font-weight: 700;">100K ETB (20%)</span>
                                 </div>
                                 <div
                                     style="width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden;">
@@ -733,9 +797,10 @@
 
                             <div
                                 style="margin-top: 40px; text-align: center; border: 1px dashed var(--border); padding: 20px; border-radius: 12px;">
-                                <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">Total Capital
-                                    Requirement</div>
-                                <div class="text-gradient" style="font-size: 2.5rem; font-weight: 700;">$2.5M USD</div>
+                                <div style="font-size: 0.7rem; color: #888; text-transform: uppercase;">Total Angel
+                                    Round Ask</div>
+                                <div class="text-gradient" style="font-size: 2.2rem; font-weight: 700;">500,000 ETB
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -750,8 +815,9 @@
                             </div>
                             <div class="feature-item">
                                 <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
-                                <div class="feature-title">R&D Burn</div>
-                                <div class="feature-desc">18 Months of runway for core AI team and localization experts.
+                                <div class="feature-title">Angel Runway</div>
+                                <div class="feature-desc">6 Months of focused execution for core prototype and data
+                                    labeling.
                                 </div>
                             </div>
                             <div class="feature-item" style="grid-column: span 2;">
@@ -772,22 +838,22 @@
                         <img src="assets/earpods.png" class="img-featured" style="filter: brightness(0.8);">
                     </div>
                     <div class="content-side">
-                        <h2 class="text-gradient">$2.5M Seed Round</h2>
+                        <h2 class="text-gradient">500,000 ETB Ask</h2>
                         <div class="grid-container">
                             <div class="feature-item">
                                 <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
-                                <div class="feature-title">Engineering</div>
-                                <div class="feature-desc">40% Miniaturization & manufacturing setup.</div>
+                                <div class="feature-title">Hardware</div>
+                                <div class="feature-desc">50% Finalizing sensors and core board.</div>
                             </div>
                             <div class="feature-item">
                                 <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
-                                <div class="feature-title">AI R&D</div>
-                                <div class="feature-desc">40% Edge optimization & Amharic NLP.</div>
+                                <div class="feature-title">Data</div>
+                                <div class="feature-desc">30% High-quality Amharic linguistic labeling.</div>
                             </div>
                             <div class="feature-item" style="grid-column: span 2;">
                                 <div class="icon-box"><i class="fa-solid fa-flag-checkered"></i></div>
-                                <div class="feature-title">Pilot Scale</div>
-                                <div class="feature-desc">20% Rolling out the Addis Ababa Impact Pilot.</div>
+                                <div class="feature-title">Impact Test</div>
+                                <div class="feature-desc">20% Testing with the Addis community.</div>
                             </div>
                         </div>
                         <div
