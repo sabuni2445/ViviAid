@@ -252,9 +252,19 @@
         </div>
     </div>
 
-    <!-- AI Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <!-- AI Libraries (Stable Versions) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.2.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+
+    <script>
+        // Emergency Check
+        window.addEventListener('load', () => {
+            if (typeof tf === 'undefined') {
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('error-msg').innerText = "FATAL: TensorFlow library failed to load. Check your internet.";
+            }
+        });
+    </script>
     <script src="app.js"></script>
 </body>
 

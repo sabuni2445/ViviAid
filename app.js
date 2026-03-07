@@ -69,11 +69,15 @@ async function init() {
     ctx = canvasElement.getContext('2d');
 
     try {
-        // Load the Model
-        console.log("Loading COCO-SSD Model...");
-        model = await cocoSsd.load();
+        console.log("Waiting for TensorFlow...");
+        await tf.ready();
 
-        // Update Status
+        console.log("Loading COCO-SSD Model (this may take 10-20 seconds)...");
+        model = await cocoSsd.load({
+            base: 'mobilenet_v2' // Lighter and faster for mobile
+        });
+
+        // Update Status to Ready
         const status = document.getElementById('model-status');
         if (status) {
             status.querySelector('span').innerText = "BUDDY: READY";
@@ -82,16 +86,10 @@ async function init() {
         }
 
         document.getElementById('loader').style.display = 'none';
-        console.log("Buddy AI Architecture Loaded.");
-
-        // Warmup the model
-        const zeroTensor = tf.zeros([1, 244, 244, 3]);
-        await model.detect(zeroTensor);
-        zeroTensor.dispose();
-        console.log("Buddy AI Warmup Complete.");
+        console.log("Buddy AI Architecture Successfully Loaded.");
     } catch (e) {
-        showError("Buddy AI Init Failed: Check Internet or Browser Support.");
-        console.error(e);
+        showError("AI Init Failed: " + e.message);
+        console.error("DEBUG:", e);
     }
 }
 
