@@ -70,7 +70,12 @@ async function init() {
 
     try {
         // Load the Model
-        model = await cocoSsd.load();
+        // Update Status
+        const status = document.getElementById('model-status');
+        status.querySelector('span').innerText = "BUDDY: READY";
+        status.querySelector('.pulse').style.background = "var(--accent)";
+        status.querySelector('.pulse').style.boxShadow = "0 0 10px var(--accent)";
+
         document.getElementById('loader').style.display = 'none';
         console.log("Buddy AI Architecture Loaded.");
 
