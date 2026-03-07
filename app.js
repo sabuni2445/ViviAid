@@ -15,7 +15,7 @@ const AMHARIC_MAP = {
     "person": "ሰው (Sew)",
     "bicycle": "ቢስክሌት (Bisklete)",
     "car": "መኪና (Mekina)",
-    "motorcycle": "ሞተር (Motor)",
+    "motorcycle": "ባጃጅ/ሞተር (Bajaj)",
     "bus": "አውቶቡስ (Autobus)",
     "truck": "ትልቅ መኪና (Truck)",
     "stop sign": "የቁም ምልክት (Stop)",
@@ -29,7 +29,18 @@ const AMHARIC_MAP = {
     "bed": "አልጋ (Bed)",
     "laptop": "ላፕቶፕ (Laptop)",
     "cell phone": "ስልክ (Phone)",
-    "book": "መጽሐፍ (Book)"
+    "book": "መጽሐፍ (Book)",
+    "remote": "ሪሞት (Remote)",
+    "scissors": "መቀስ (Scissors)",
+    "backpack": "ቦርሳ (Backpack)"
+};
+
+const SPATIAL_AM = {
+    "left": "በግራ (Gera)",
+    "right": "በቀኝ (Qegn)",
+    "center": "ፊት ለፊት (Fit-lefit)",
+    "close": "አጠገብ (Ategeb)",
+    "far": "ሩቅ (Ruq)"
 };
 
 async function init() {
@@ -142,16 +153,30 @@ async function detectFrame() {
         if (predictions.length === 0) {
             document.getElementById('obj-en').innerText = "Scanning Area...";
         } else {
-            // Lower threshold to 0.3 for easier discovery
+            // Filter and find the most relevant object
             const top = predictions.filter(p => p.score > 0.3)[0];
             if (top) {
-                updateUI(top.class);
-                processSpeech(top.class);
-
-                // Draw Box
                 const [x, y, w, h] = top.bbox;
-                ctx.strokeStyle = '#00e5ff';
-                ctx.lineWidth = 4;
+
+                // Determine Direction (Split Screen into 3)
+                const centerX = x + (w / 2);
+                const viewWidth = canvasElement.width;
+                let dir = "center";
+                if (centerX < viewWidth * 0.35) dir = "left";
+                else if (centerX > viewWidth * 0.65) dir = "right";
+
+                // Determine Proximity (Based on height ratio)
+                const hRatio = h / canvasElement.height;
+                let prox = "medium";
+                if (hRatio > 0.6) prox = "close";
+                else if (hRatio < 0.25) prox = "far";
+
+                updateUI(top.class, dir, prox);
+                processSpeech(top.class, dir, prox);
+
+                // Draw Box (Color coded for proximity)
+                ctx.strokeStyle = (prox === "close") ? "#ff4d4d" : '#00e5ff';
+                ctx.lineWidth = (prox === "close") ? 10 : 4;
                 ctx.strokeRect(x, y, w, h);
             }
         }
@@ -162,16 +187,28 @@ async function detectFrame() {
     requestAnimationFrame(detectFrame);
 }
 
-function updateUI(cls) {
-    document.getElementById('obj-en').innerText = cls.toUpperCase();
-    document.getElementById('obj-am').innerText = AMHARIC_MAP[cls] || cls;
+function updateUI(cls, dir, prox) {
+    const amCls = AMHARIC_MAP[cls] ? AMHARIC_MAP[cls].split(" (")[0] : cls;
+    const amDir = SPATIAL_AM[dir].split(" (")[0];
+    const amProx = (prox !== "medium") ? SPATIAL_AM[prox].split(" (")[0] : "";
+
+    document.getElementById('obj-en').innerText = `${cls.toUpperCase()} | ${dir.toUpperCase()} | ${prox.toUpperCase()}`;
+    document.getElementById('obj-am').innerText = `${amCls} ${amDir} ${amProx}`;
 }
 
-function processSpeech(cls) {
+function processSpeech(cls, dir, prox) {
     const now = Date.now();
-    if (cls !== lastSpoken || (now - lastSpokenTime > 5000)) {
-        speak(AMHARIC_MAP[cls] ? AMHARIC_MAP[cls].split(" ")[0] : cls);
-        lastSpoken = cls;
+    const stateId = `${cls}-${dir}-${prox}`;
+
+    // Speak if object changed OR every 6 seconds if same object stays
+    if (stateId !== lastSpoken || (now - lastSpokenTime > 6000)) {
+        const amWord = AMHARIC_MAP[cls] ? AMHARIC_MAP[cls].split(" ")[0] : cls;
+        const amDir = SPATIAL_AM[dir].split(" ")[0];
+        const amProx = (prox !== "medium") ? SPATIAL_AM[prox].split(" ")[0] : "";
+
+        const phrase = `${amWord} ${amDir} ${amProx}`;
+        speak(phrase);
+        lastSpoken = stateId;
         lastSpokenTime = now;
     }
 }
