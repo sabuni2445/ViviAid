@@ -47,11 +47,16 @@ async function init() {
             throw new Error("AI Libraries failed to load. Check Internet.");
         }
 
-        if (loaderText) loaderText.innerText = "Configuring Brain (CPU)...";
-        await tf.setBackend('cpu');
-        await tf.ready();
+        if (loaderText) loaderText.innerText = "Powering up WebGL/GPU...";
+        try {
+            await tf.setBackend('webgl');
+            await tf.ready();
+        } catch (webglErr) {
+            console.warn("WebGL failed, falling back to CPU.");
+            await tf.setBackend('cpu');
+        }
 
-        if (loaderText) loaderText.innerText = "Downloading AI Model (20MB)...";
+        if (loaderText) loaderText.innerText = "Downloading Brain (20MB)...";
         model = await cocoSsd.load({ base: 'lite_mobilenet_v2' });
 
         // Update Status to Ready
@@ -119,14 +124,26 @@ async function detectFrame() {
     if (!isDetecting || !model) return;
 
     try {
+        // Check if video is actually giving frames
+        if (videoElement.readyState < 2) {
+            requestAnimationFrame(detectFrame);
+            return;
+        }
+
         const predictions = await model.detect(videoElement);
         ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
+        // Flash the pulse dot to show AI is alive
+        const pulse = document.querySelector('.pulse');
+        if (pulse) {
+            pulse.style.opacity = (pulse.style.opacity === "0.5") ? "1" : "0.5";
+        }
+
         if (predictions.length === 0) {
-            document.getElementById('obj-en').innerText = "Scanning...";
-            document.getElementById('obj-am').innerText = "በመፈለግ ላይ...";
+            document.getElementById('obj-en').innerText = "Scanning Area...";
         } else {
-            const top = predictions.filter(p => p.score > 0.4)[0];
+            // Lower threshold to 0.3 for easier discovery
+            const top = predictions.filter(p => p.score > 0.3)[0];
             if (top) {
                 updateUI(top.class);
                 processSpeech(top.class);
