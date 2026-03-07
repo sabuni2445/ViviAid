@@ -23,14 +23,14 @@ const featureDialogues = {
             ai: "The sign says 'Caution: Wet Floor'. Please be careful walking forward!"
         }
     },
-    music: {
-        lofi: {
-            user: "Hey Buddy, play some relaxing lo-fi music.",
-            ai: "Great choice! I'm starting your 'Sunset Lo-fi' playlist now. Enjoy the vibes!"
+    spatial: {
+        where: {
+            user: "Hey Buddy, መኪናው የት ነው? (Where is the car?)",
+            ai: "መኪናው በቀኝ በኩል አጠገብ ነው። (The car is close by on your right.) Watch your step as it's pulling out."
         },
-        workout: {
-            user: "Buddy, play my intense work-out playlist.",
-            ai: "You got it! Pumping up the 'Beast Mode' playlist. Let's get moving!"
+        scan: {
+            user: "Buddy, አካባቢውን እይልኝ (Scan surroundings)",
+            ai: "ፊት ለፊትህ በር አለ (Door in front of you). በግራ በኩል ወንበር አለ (Chair on your left). መንገዱ ክፍት ነው (Path is clear)."
         }
     },
     rideshare: {
