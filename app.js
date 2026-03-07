@@ -73,6 +73,12 @@ async function init() {
         model = await cocoSsd.load();
         document.getElementById('loader').style.display = 'none';
         console.log("Buddy AI Architecture Loaded.");
+
+        // Warmup the model
+        const zeroTensor = tf.zeros([1, 244, 244, 3]);
+        await model.detect(zeroTensor);
+        zeroTensor.dispose();
+        console.log("Buddy AI Warmup Complete.");
     } catch (e) {
         showError("Buddy AI Init Failed: Check Internet or Browser Support.");
         console.error(e);
@@ -134,8 +140,13 @@ async function detectFrame() {
     // Clear canvas
     ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
-    // Filter predictions (Confidence > 65%)
-    const validPredictions = predictions.filter(p => p.score > 0.65);
+    if (predictions.length === 0) {
+        document.getElementById('obj-en').innerText = "Scanning...";
+        document.getElementById('obj-am').innerText = "በመፈለግ ላይ...";
+    }
+
+    // Filter predictions (Confidence > 45% for better discovery)
+    const validPredictions = predictions.filter(p => p.score > 0.45);
 
     if (validPredictions.length > 0) {
         // Get the most dominant object
