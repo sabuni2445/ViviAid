@@ -1,6 +1,6 @@
 /**
  * ViviAid Buddy AI - Live Concept Prototype
- * A high-performance, edge-AI vision system for mobile browser testing.
+ * Bulletproof Mobile Version
  */
 
 let model;
@@ -11,85 +11,61 @@ let isDetecting = false;
 let lastSpoken = "";
 let lastSpokenTime = 0;
 
-// Amharic Vocabulary Mapping
 const AMHARIC_MAP = {
     "person": "ሰው (Sew)",
     "bicycle": "ቢስክሌት (Bisklete)",
     "car": "መኪና (Mekina)",
     "motorcycle": "ሞተር (Motor)",
-    "airplane": "አውሮፕላን (Airplane)",
     "bus": "አውቶቡስ (Autobus)",
-    "train": "ባቡር (Babur)",
     "truck": "ትልቅ መኪና (Truck)",
-    "boat": "ጀልባ (Jelba)",
-    "traffic light": "የትራፊክ መብራት (Mebirat)",
-    "stop sign": "የቁም ምልክት (Stop Sign)",
-    "bench": "ወንበር (Bench)",
+    "stop sign": "የቁም ምልክት (Stop)",
     "bird": "ወፍ (Wof)",
     "cat": "ድመት (Dimet)",
     "dog": "ውሻ (Wusha)",
-    "horse": "ፈረስ (Feres)",
-    "sheep": "በግ (Beg)",
-    "cow": "ላም (Lam)",
-    "backpack": "ቦርሳ (Backpack)",
-    "umbrella": "ጃንጥላ (Jantila)",
-    "handbag": "ቦርሳ (Handbag)",
-    "suitcase": "ሻንጣ (Shanta)",
     "bottle": "ጠርሙስ (Bottle)",
     "cup": "ብርጭቆ (Cup)",
-    "fork": "ሹካ (Shuka)",
-    "knife": "ቢላዋ (Knife)",
-    "spoon": "ማንኪያ (Mankia)",
-    "bowl": "ሰህን (Bowl)",
-    "banana": "ሙዝ (Muz)",
-    "apple": "ፖም (Pom)",
-    "orange": "ብርቱካን (Orange)",
     "chair": "ወንበር (Chair)",
     "couch": "ሶፋ (Couch)",
-    "potted plant": "ተክል (Plant)",
     "bed": "አልጋ (Bed)",
-    "dining table": "ጠረጴዛ (Table)",
-    "toilet": "ሸንት ቤት (Toilet)",
-    "tv": "ቲቪ (TV)",
     "laptop": "ላፕቶፕ (Laptop)",
-    "mouse": "ማውዝ (Mouse)",
-    "remote": "ሪሞት (Remote)",
-    "keyboard": "ኪቦርድ (Keyboard)",
     "cell phone": "ስልክ (Phone)",
-    "book": "መጽሐፍ (Metsehaf)",
-    "clock": "ሰዓት (Time)",
-    "scissors": "መቀስ (Scissors)",
-    "teddy bear": "ድብ (Bear)",
-    "toothbrush": "የጥርስ ብሩሽ (Brush)"
+    "book": "መጽሐፍ (Book)"
 };
 
 async function init() {
+    console.log("Buddy: Initializing...");
+
+    // UI Elements
     videoElement = document.getElementById('video');
     canvasElement = document.getElementById('canvas');
-    ctx = canvasElement.getContext('2d');
+    if (canvasElement) ctx = canvasElement.getContext('2d');
+
+    const loaderText = document.querySelector('.loading-text');
 
     try {
-        console.log("Waiting for TensorFlow...");
+        if (typeof tf === 'undefined' || typeof cocoSsd === 'undefined') {
+            throw new Error("AI Libraries failed to load. Check Internet.");
+        }
+
+        if (loaderText) loaderText.innerText = "Configuring Brain (CPU)...";
+        await tf.setBackend('cpu');
         await tf.ready();
 
-        console.log("Loading COCO-SSD Model (this may take 10-20 seconds)...");
-        model = await cocoSsd.load({
-            base: 'mobilenet_v2' // Lighter and faster for mobile
-        });
+        if (loaderText) loaderText.innerText = "Downloading AI Model (20MB)...";
+        model = await cocoSsd.load({ base: 'lite_mobilenet_v2' });
 
         // Update Status to Ready
         const status = document.getElementById('model-status');
         if (status) {
             status.querySelector('span').innerText = "BUDDY: READY";
-            status.querySelector('.pulse').style.background = "var(--accent)";
-            status.querySelector('.pulse').style.boxShadow = "0 0 10px var(--accent)";
+            status.querySelector('.pulse').style.background = "#00e5ff";
         }
 
         document.getElementById('loader').style.display = 'none';
-        console.log("Buddy AI Architecture Successfully Loaded.");
+        console.log("Buddy: Ready.");
     } catch (e) {
-        showError("AI Init Failed: " + e.message);
-        console.error("DEBUG:", e);
+        console.error("Buddy Error:", e);
+        showError("Buddy Init Failed: " + e.message);
     }
 }
 
@@ -101,131 +77,106 @@ async function startCamera() {
         });
         videoElement.srcObject = stream;
 
-        // Auto-scale canvas to video size
         videoElement.onloadedmetadata = () => {
             canvasElement.width = videoElement.videoWidth;
             canvasElement.height = videoElement.videoHeight;
         };
-
         return true;
     } catch (e) {
-        showError("Camera Access Denied. Buddy cannot see.");
+        showError("Camera Error: " + e.message);
         return false;
     }
 }
 
 async function toggleAI() {
-    const btn = document.getElementById('btn-action');
+    if (!model) {
+        alert("Buddy is still loading. Please wait.");
+        return;
+    }
 
+    const btn = document.getElementById('btn-action');
     if (!isDetecting) {
         const success = await startCamera();
         if (success) {
             isDetecting = true;
-            btn.innerText = "PAUSE BUDDY";
+            btn.innerText = "STOP BUDDY";
             btn.style.background = "#ff4d4d";
             document.getElementById('info-box').style.display = 'block';
-            speak("Welcome. Buddy AI is active.");
+            speak("Buddy active.");
             detectFrame();
         }
     } else {
         isDetecting = false;
         btn.innerText = "START BUDDY AI";
-        btn.style.background = "linear-gradient(135deg, var(--accent), var(--accent-purple))";
-
-        // Stop camera stream
-        const stream = videoElement.srcObject;
-        if (stream) {
-            stream.getTracks().forEach(track => track.stop());
+        btn.style.background = "linear-gradient(135deg, #00e5ff, #7000ff)";
+        if (videoElement.srcObject) {
+            videoElement.srcObject.getTracks().forEach(t => t.stop());
         }
     }
 }
 
 async function detectFrame() {
-    if (!isDetecting) return;
+    if (!isDetecting || !model) return;
 
-    const predictions = await model.detect(videoElement);
+    try {
+        const predictions = await model.detect(videoElement);
+        ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
-    // Clear canvas
-    ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        if (predictions.length === 0) {
+            document.getElementById('obj-en').innerText = "Scanning...";
+            document.getElementById('obj-am').innerText = "በመፈለግ ላይ...";
+        } else {
+            const top = predictions.filter(p => p.score > 0.4)[0];
+            if (top) {
+                updateUI(top.class);
+                processSpeech(top.class);
 
-    if (predictions.length === 0) {
-        document.getElementById('obj-en').innerText = "Scanning...";
-        document.getElementById('obj-am').innerText = "በመፈለግ ላይ...";
-    }
-
-    // Filter predictions (Confidence > 45% for better discovery)
-    const validPredictions = predictions.filter(p => p.score > 0.45);
-
-    if (validPredictions.length > 0) {
-        // Get the most dominant object
-        const top = validPredictions[0];
-        updateUI(top.class);
-
-        // Logic to speak about the object
-        processSpeech(top.class);
-
-        // Draw HUD boxes
-        validPredictions.forEach(prediction => {
-            const [x, y, width, height] = prediction.bbox;
-            ctx.strokeStyle = '#00e5ff';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(x, y, width, height);
-
-            ctx.fillStyle = 'rgba(0, 229, 255, 0.2)';
-            ctx.fillRect(x, y, width, height);
-
-            ctx.fillStyle = '#00e5ff';
-            ctx.font = '20px Outfit';
-            ctx.fillText(prediction.class, x, y > 10 ? y - 10 : 10);
-        });
+                // Draw Box
+                const [x, y, w, h] = top.bbox;
+                ctx.strokeStyle = '#00e5ff';
+                ctx.lineWidth = 4;
+                ctx.strokeRect(x, y, w, h);
+            }
+        }
+    } catch (e) {
+        console.error("Detection Error:", e);
     }
 
     requestAnimationFrame(detectFrame);
 }
 
-function updateUI(className) {
-    const amharic = AMHARIC_MAP[className] || className;
-    document.getElementById('obj-en').innerText = className.charAt(0).toUpperCase() + className.slice(1);
-    document.getElementById('obj-am').innerText = amharic;
+function updateUI(cls) {
+    document.getElementById('obj-en').innerText = cls.toUpperCase();
+    document.getElementById('obj-am').innerText = AMHARIC_MAP[cls] || cls;
 }
 
-function processSpeech(className) {
+function processSpeech(cls) {
     const now = Date.now();
-
-    // Only speak every 4 seconds for the SAME object, or instantly for a NEW object
-    if (className !== lastSpoken || (now - lastSpokenTime > 4000)) {
-        const amWord = AMHARIC_MAP[className] ? AMHARIC_MAP[className].split(" ")[0] : className;
-        speak(amWord);
-        lastSpoken = className;
+    if (cls !== lastSpoken || (now - lastSpokenTime > 5000)) {
+        speak(AMHARIC_MAP[cls] ? AMHARIC_MAP[cls].split(" ")[0] : cls);
+        lastSpoken = cls;
         lastSpokenTime = now;
     }
 }
 
 function speak(text) {
     if (!window.speechSynthesis) return;
-
-    const utterance = new SpeechSynthesisUtterance(text);
-
-    // Try to find an Amharic voice or fallback
-    const voices = window.speechSynthesis.getVoices();
-    const amharicVoice = voices.find(v => v.lang.startsWith('am'));
-    if (amharicVoice) utterance.voice = amharicVoice;
-
-    utterance.rate = 0.9;
-    utterance.pitch = 1.0;
-
-    window.speechSynthesis.cancel(); // Stop current speech
-    window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
 }
 
 function showError(msg) {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'none';
     const err = document.getElementById('error-msg');
-    err.style.display = 'block';
-    err.innerText = msg;
+    if (err) {
+        err.style.display = 'block';
+        err.innerText = msg;
+    } else {
+        alert(msg);
+    }
 }
 
-// Initialise on load
-window.onload = init;
-document.addEventListener('speechSynthesisVoicesChanged', () => {
-    // Some browsers need this to populate voices
-});
+window.addEventListener('load', init);
